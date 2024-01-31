@@ -23,6 +23,7 @@ import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { PostCardComponent } from './layouts/post-card/post-card.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { CategoriesComponent } from './categories/categories.component';
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.fireBaseConfig),
-    FirestoreModule
+    FirestoreModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
