@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { environment } from '../environments/environment.prod';
+import { FirestoreModule } from '@angular/fire/firestore'; 
+import { environment } from 'src/environment/environment.prod';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,7 +23,6 @@ import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { PostCardComponent } from './layouts/post-card/post-card.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CategoriesComponent } from './categories/categories.component';
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -48,8 +47,7 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.fireBaseConfig),
-    AngularFirestoreModule,
-    FormsModule
+    FirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
