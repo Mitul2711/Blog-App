@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from '../services/categories.service';
+import { Category } from '../models/category';
 
 @Component({
   selector: 'app-categories',
@@ -15,7 +16,7 @@ export class CategoriesComponent implements OnInit {
 
   onSubmit(data: any) {
     
-    let categoryData = {
+    let categoryData: Category = {
       category: data.value.category
     }
 
