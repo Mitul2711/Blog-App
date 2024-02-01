@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoriesService } from '../services/categories.service';
 
 @Component({
   selector: 'app-categories',
@@ -6,14 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
-  constructor() {}
+  constructor(private categoryService: CategoriesService) {}
   
   ngOnInit(): void {
     
   }
 
   onSubmit(data: any) {
-    console.log(data)
+    
+    let categoryData = {
+      category: data.value.category
+    }
+
+    this.categoryService.saveData(categoryData);
+
   }
 
 }
