@@ -17,8 +17,9 @@ export class CategoriesService {
       this.toast.success({ detail: "SUCCESS", summary: 'Data Insert Successfully..!', duration: 5000 });
     })
       .catch(err => {
-        console.log(err)
+        console.log(err);
       })
+
   }
 
   loadData() {
