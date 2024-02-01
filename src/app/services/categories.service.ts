@@ -33,4 +33,16 @@ export class CategoriesService {
     )
   }
 
+  updateData(id: string | undefined, editData: Partial<unknown>) {
+    this.afs.doc(`categories/${id}`).update(editData).then(docRef => {
+      this.toast.success({ detail: "SUCCESS", summary: 'Data Updated Successfully..!', duration: 5000 });
+    })
+  }
+
+  deleteData(id: any) {
+    this.afs.doc(`categories/${id}`).delete().then(docRef => {
+      this.toast.success({ detail: "SUCCESS", summary: 'Data Deleted Successfully..!', duration: 5000 });
+    })
+  }
+
 }

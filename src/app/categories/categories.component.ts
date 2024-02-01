@@ -9,7 +9,10 @@ import { Category } from '../models/category';
 })
 export class CategoriesComponent implements OnInit {
 
+  formCategory: string = '';
+  formStatus: string = 'Add';
   categoryArray : any;
+  categoryId: string = '';
 
   constructor(private categoryService: CategoriesService) {}
   
@@ -26,10 +29,26 @@ export class CategoriesComponent implements OnInit {
       category: formData.value.category
     }
 
-    formData.reset();
+    if (this.formStatus == 'Add') {
+      formData.reset();
+      this.categoryService.saveData(categoryData);
+    } else if (this.formStatus == 'Edit') {
+      this.categoryService.updateData(this.categoryId, categoryData);
+      formData.reset();
+      this.formStatus = 'Add';
+    }
 
-    this.categoryService.saveData(categoryData);
+  
+  }
 
+  onEdit(category: any, id: any) {
+    this.formCategory = category;
+    this.formStatus = 'Edit';
+    this.categoryId = id;
+  }
+
+  onDelete(id: any) {
+    this.categoryService.deleteData(id);
   }
 
 }
