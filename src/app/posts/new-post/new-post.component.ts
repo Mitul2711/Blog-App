@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoriesService } from 'src/app/services/categories.service';
 
 @Component({
@@ -12,13 +13,27 @@ export class NewPostComponent implements OnInit {
   imgSrc: any = './assets/placeholder-img.png';
   selectedImage: any;
   categories: any;
+  postForm: any;
 
-  constructor( private categoryService: CategoriesService ) { }
+  constructor( private categoryService: CategoriesService, private fb: FormBuilder ) {
+    this.postForm = fb.group({
+      title: ['', [Validators.required, Validators.minLength(5)]],
+      permalink: ['', Validators.required],
+      excerpt: ['', [Validators.required, Validators.minLength(50)]],
+      category: ['', Validators.required],
+      postImg: ['', Validators.required],
+      content: ['', Validators.required]
+    })
+   }
 
   ngOnInit(): void {
     this.categoryService.loadData().subscribe(val => {
         this.categories = val;
     })
+  }
+
+  get fc() {
+    return this.postForm.controls;
   }
 
   onTitleChanged($event: any) {
