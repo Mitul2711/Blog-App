@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Post } from 'src/app/models/post';
 import { CategoriesService } from 'src/app/services/categories.service';
+import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
   selector: 'app-new-post',
@@ -17,7 +18,7 @@ export class NewPostComponent implements OnInit {
   postForm: any;
   permalinkControl: any;
 
-  constructor( private categoryService: CategoriesService, private fb: FormBuilder ) {
+  constructor( private categoryService: CategoriesService, private fb: FormBuilder, private postService: PostsService ) {
     
     this.permalinkControl = new FormControl({ value: '', disabled: true });
 
@@ -56,13 +57,16 @@ export class NewPostComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.postForm.value )
+
+    let splitted = this.postForm.value.category.split('-')
+    console.log(splitted)
+
     const postData: Post = {
         title: this.postForm.value.title,
         permalink: this.postForm.value.permalink,
         category: {
-          categoryId: '',
-          category: ''
+          categoryId: splitted[0],
+          category: splitted[1]
         },
         postImgPath: '',
         excerpt: this.postForm.value.excerpt,
@@ -72,6 +76,7 @@ export class NewPostComponent implements OnInit {
         status: 'new',
         createdAt: new Date()
     }
+    this.postService.uploadImage(this.selectedImage);
   }
  
 }

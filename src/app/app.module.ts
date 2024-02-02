@@ -5,6 +5,8 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { FirestoreModule } from '@angular/fire/firestore'; 
 import { environment } from 'src/environment/environment.prod';
 import { NgToastModule } from 'ng-angular-popup';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -59,7 +61,8 @@ import { HttpClientModule } from '@angular/common/http';
     NgToastModule,
     AngularEditorModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

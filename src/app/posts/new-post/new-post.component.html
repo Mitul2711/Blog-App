@@ -75,7 +75,7 @@
                     [ngClass]="{'is-invalid': fc.category.touched && fc.category.invalid}"
                     >
                         <option value="">Please select a Category</option>
-                        <option *ngFor="let category of categories"[value]="category.data.category">{{ category.data.category }}</option>
+                        <option *ngFor="let category of categories" value="{{category.id}}-{{category.data.category}}">{{ category.data.category }}</option>
                     </select>
                     <div *ngIf="fc.category.errors?.required">
                         <p class="text-danger" *ngIf="fc.category.touched && fc.category.invalid">
