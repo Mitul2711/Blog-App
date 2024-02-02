@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CategoriesService } from 'src/app/services/categories.service';
 
 @Component({
@@ -14,16 +14,20 @@ export class NewPostComponent implements OnInit {
   selectedImage: any;
   categories: any;
   postForm: any;
+  permalinkControl: any;
 
   constructor( private categoryService: CategoriesService, private fb: FormBuilder ) {
+    
+    this.permalinkControl = new FormControl({ value: '', disabled: true });
+
     this.postForm = fb.group({
       title: ['', [Validators.required, Validators.minLength(5)]],
-      permalink: ['', Validators.required],
+      permalink: this.permalinkControl,
       excerpt: ['', [Validators.required, Validators.minLength(50)]],
       category: ['', Validators.required],
       postImg: ['', Validators.required],
       content: ['', Validators.required]
-    })
+    });
    }
 
   ngOnInit(): void {
@@ -48,6 +52,10 @@ export class NewPostComponent implements OnInit {
     }
     reader.readAsDataURL($event.target.files[0]);
     this.selectedImage = $event.target.files[0];
+  }
+
+  onSubmit() {
+    console.log(this.postForm.value )
   }
  
 }

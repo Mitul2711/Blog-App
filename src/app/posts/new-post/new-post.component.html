@@ -6,7 +6,7 @@
         </div>
     </div>
 
-    <form [formGroup]="postForm">
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
 
         <div class="row">
 
@@ -35,7 +35,14 @@
                         </div>
                         <div class="form-group">
                             <label class="mb-2 mt-2"> Permalink </label>
-                            <input type="text" name="permalink" class="form-control" [(ngModel)]="permalink" disabled>
+                            <input 
+                            type="text" 
+                            name="permalink" 
+                            class="form-control" 
+                            [(ngModel)]="permalink" 
+                            formControlName="permalink" 
+                            [disabled]="permalinkControl.disabled"
+                            >
                         </div>
                         <div class="form-group">
                             <label class="mb-2 mt-2"> Excerpt </label>
@@ -65,13 +72,14 @@
                     <select 
                     class="form-control custom-select" 
                     formControlName="category" 
-                    [ngClass]="{'is-invalid': fc.category.touched && fc.category.invalid}">
-                        <option value="" disabled selected>Please select a Category</option>
-                        <option *ngFor="let category of categories" value="">{{ category.data.category }}</option>
+                    [ngClass]="{'is-invalid': fc.category.touched && fc.category.invalid}"
+                    >
+                        <option value="">Please select a Category</option>
+                        <option *ngFor="let category of categories"[value]="category.data.category">{{ category.data.category }}</option>
                     </select>
                     <div *ngIf="fc.category.errors?.required">
                         <p class="text-danger" *ngIf="fc.category.touched && fc.category.invalid">
-                            Please select a Post Image
+                            Please select a Post Category.
                         </p>
                     </div>
                 </div>
