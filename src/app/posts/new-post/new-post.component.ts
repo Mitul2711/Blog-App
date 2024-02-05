@@ -24,7 +24,7 @@ export class NewPostComponent implements OnInit {
 
     this.postForm = fb.group({
       title: ['', [Validators.required, Validators.minLength(5)]],
-      permalink: this.permalinkControl,
+      permalink: [''],
       excerpt: ['', [Validators.required, Validators.minLength(50)]],
       category: ['', Validators.required],
       postImg: ['', Validators.required],
@@ -76,7 +76,9 @@ export class NewPostComponent implements OnInit {
         status: 'new',
         createdAt: new Date()
     }
-    this.postService.uploadImage(this.selectedImage);
+    this.postService.uploadImage(this.selectedImage, postData);
+    this.postForm.reset();
+    this.imgSrc = './assets/placeholder-img.png';
   }
  
 }
