@@ -22,6 +22,7 @@ export class NewPostComponent implements OnInit {
   formStatus: string = 'Add New';
   btnStatus: string = 'Save';
   docId: any;
+  isDisabled: boolean = true;
 
   constructor(
     private categoryService: CategoriesService,
@@ -40,7 +41,7 @@ export class NewPostComponent implements OnInit {
 
           this.postForm = fb.group({
             title: [this.post.title, [Validators.required, Validators.minLength(5)]],
-            permalink: [this.post.permalink, Validators.required],
+            permalink: [{value: this.post.permalink, disabled: this.isDisabled}, Validators.required],
             excerpt: [this.post.excerpt, [Validators.required, Validators.minLength(50)]],
             category: [`${this.post.category.categoryId}-${this.post.category.category}`, Validators.required],
             postImg: ['', Validators.required],
@@ -54,7 +55,7 @@ export class NewPostComponent implements OnInit {
       } else {
         this.postForm = fb.group({
           title: ['', [Validators.required, Validators.minLength(5)]],
-          permalink: ['', Validators.required],
+          permalink: [{value: '', disabled: this.isDisabled}, Validators.required],
           excerpt: ['', [Validators.required, Validators.minLength(50)]],
           category: ['', Validators.required],
           postImg: ['', Validators.required],
