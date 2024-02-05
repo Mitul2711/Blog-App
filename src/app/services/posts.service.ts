@@ -68,4 +68,16 @@ export class PostsService {
     })
   }
 
+  deleteImage(postImgPath: any, id: any) {
+    this.storage.storage.refFromURL(postImgPath).delete().then(() => {
+      this.deleteData(id);
+    })
+  }
+
+  deleteData(id: any) {
+    this.afs.collection('posts').doc(id).delete().then(() => {
+      this.toast.warning({detail: 'WARNING', summary: "Data Deleted..", duration: 5000});
+    })
+  }
+
 }

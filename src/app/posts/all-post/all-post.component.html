@@ -9,7 +9,7 @@
                     <p>From here you can manage your Blog Posts.</p>
 
                     <button class="btn btn-info btn-theme" routerLink="/posts/new">Add New Post</button>
-                    <button class="btn btn-warning ml-2" routerLink="/">Back to Dashboard</button>
+                    <button class="btn btn-warning btn-css ml-2" routerLink="/">Back to Dashboard</button>
 
                 </div>
             </div>
@@ -41,7 +41,11 @@
                                 <td width="300"> {{ post.data.excerpt }} </td>
                                 <td> {{ post.data.category?.category }} </td>
                                 <td> {{ post.data.createdAt.toMillis() | date }} </td>
-                                <td> <button class="btn btn-sm btn-warning" routerLink="/posts/new" [queryParams]="{id: post.id}" > Edit </button> </td>
+                                <td> 
+                                    <button class="btn btn-sm btn-warning" routerLink="/posts/new" [queryParams]="{id: post.id}" > Edit </button> 
+                                    <button class="btn btn-sm btn-danger btn-delete" (click)="onDelete(post.data.postImgPath, post.id)"> Delete </button>
+                                </td>
+                                
                             </tr>
                         </tbody>
                     </table>

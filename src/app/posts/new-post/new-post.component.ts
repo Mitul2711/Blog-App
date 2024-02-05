@@ -23,48 +23,51 @@ export class NewPostComponent implements OnInit {
   btnStatus: string = 'Save';
   docId: any;
 
-  constructor( 
-    private categoryService: CategoriesService, 
-    private fb: FormBuilder, 
+  constructor(
+    private categoryService: CategoriesService,
+    private fb: FormBuilder,
     private postService: PostsService,
-    private route: ActivatedRoute 
-    ) {
+    private route: ActivatedRoute
+  ) {
 
-    this.permalinkControl = new FormControl({ value: '', disabled: true });
 
     this.route.queryParams.subscribe(val => {
-      this.postService.loadOneData(val['id']).subscribe(post => {
-        this.post = post;
-        this.docId = val['id'];
+      this.docId = val['id'];
 
+      if (this.docId) {
+        this.postService.loadOneData(val['id']).subscribe(post => {
+          this.post = post;
+
+          this.postForm = fb.group({
+            title: [this.post.title, [Validators.required, Validators.minLength(5)]],
+            permalink: [this.post.permalink, Validators.required],
+            excerpt: [this.post.excerpt, [Validators.required, Validators.minLength(50)]],
+            category: [`${this.post.category.categoryId}-${this.post.category.category}`, Validators.required],
+            postImg: ['', Validators.required],
+            content: [this.post.content, Validators.required]
+          })
+
+          this.imgSrc = this.post.postImgPath;
+          this.formStatus = 'Edit';
+          this.btnStatus = 'Edit';
+        })
+      } else {
         this.postForm = fb.group({
-          title: [this.post.title, [Validators.required, Validators.minLength(5)]],
-          permalink: [this.post.permalink, Validators.required],
-          excerpt: [this.post.excerpt, [Validators.required, Validators.minLength(50)]],
-          category: [`${this.post.category.categoryId}-${this.post.category.category}`, Validators.required],
+          title: ['', [Validators.required, Validators.minLength(5)]],
+          permalink: ['', Validators.required],
+          excerpt: ['', [Validators.required, Validators.minLength(50)]],
+          category: ['', Validators.required],
           postImg: ['', Validators.required],
-          content: [this.post.content, Validators.required]
-        })        
+          content: ['', Validators.required]
+        })
+      }
+    })
 
-        this.imgSrc = this.post.postImgPath;
-        this.formStatus = 'Edit';
-        this.btnStatus = 'Edit';
-
-      })
-    })  
-    this.postForm = fb.group({
-      title: ['', [Validators.required, Validators.minLength(5)]],
-      permalink: ['', Validators.required],
-      excerpt: ['', [Validators.required, Validators.minLength(50)]],
-      category: ['', Validators.required],
-      postImg: ['', Validators.required],
-      content: ['', Validators.required]
-    })      
-   } 
+  }
 
   ngOnInit(): void {
     this.categoryService.loadData().subscribe(val => {
-        this.categories = val;
+      this.categories = val;
     })
   }
 
@@ -75,9 +78,10 @@ export class NewPostComponent implements OnInit {
   onTitleChanged($event: any) {
     const title = $event.target.value;
     this.permalink = title.replace(/\s/g, '-');
+
   }
 
-  showPreview ($event: any) {
+  showPreview($event: any) {
     const reader = new FileReader();
     reader.onload = (e) => {
       this.imgSrc = e.target?.result
@@ -92,23 +96,23 @@ export class NewPostComponent implements OnInit {
     console.log(splitted)
 
     const postData: Post = {
-        title: this.postForm.value.title,
-        permalink: this.postForm.value.permalink,
-        category: {
-          categoryId: splitted[0],
-          category: splitted[1]
-        },
-        postImgPath: '',
-        excerpt: this.postForm.value.excerpt,
-        content: this.postForm.value.content,
-        isFeatured: false,
-        views: 0,
-        status: 'new',
-        createdAt: new Date()
+      title: this.postForm.value.title,
+      permalink: this.postForm.value.permalink,
+      category: {
+        categoryId: splitted[0],
+        category: splitted[1]
+      },
+      postImgPath: '',
+      excerpt: this.postForm.value.excerpt,
+      content: this.postForm.value.content,
+      isFeatured: false,
+      views: 0,
+      status: 'new',
+      createdAt: new Date()
     }
     this.postService.uploadImage(this.selectedImage, postData, this.formStatus, this.docId);
     this.postForm.reset();
     this.imgSrc = './assets/placeholder-img.png';
   }
- 
+
 }
