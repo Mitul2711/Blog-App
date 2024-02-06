@@ -9,6 +9,7 @@ import { NgToastService } from 'ng-angular-popup';
 export class AuthService {
 
   loggedIn: boolean = false;
+  isLoggedInGuard: boolean = false;
 
   constructor(private afAuth: AngularFireAuth, private toast: NgToastService, private router: Router) { }
 
@@ -17,6 +18,7 @@ export class AuthService {
       this.toast.success({detail: 'SUCCESS', summary: "Logged in successfully..", duration: 3000})
       this.loadUser()
       this.loggedIn = true
+      this.isLoggedInGuard = true
       this.router.navigate(['/'])
     }).catch(e => {
       this.toast.error({detail: 'ERROR', summary: "Invalid UserName or PassWord", duration: 3000})
@@ -34,6 +36,7 @@ export class AuthService {
       this.toast.success({detail: 'SUCCESS', summary: 'User logged out successfully..'})
       localStorage.removeItem('user')
       this.loggedIn = false
+      this.isLoggedInGuard = false
       this.router.navigate(['/login'])
     })
   }
