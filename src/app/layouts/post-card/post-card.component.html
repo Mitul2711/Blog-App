@@ -1,13 +1,13 @@
-<div class="card shadow-effect">
-    <img src="https://images.pexels.com/photos/19898940/pexels-photo-19898940/free-photo-of-close-up-of-an-owl-perching-in-a-hollow.jpeg" alt="post-image" class="card-img-top">
+<div class="card shadow-effect" *ngIf="postData">
+    <img src="{{postData.data.postImgPath}}" alt="post-image" height="200px" width="400px" class="card-img-top">
 
     <div class="card-body">
-        <small class="bg-light text-danger text-center"> Design </small>
+        <small class="bg-light text-danger text-center"> {{postData.data.category.category}} </small>
         <small class="bg-light text-success text-center ml-3"> Feature </small>
-        <small class="bg-light text-info text-center ml-3"> View - 126,251 </small>
+        <small class="bg-light text-info text-center ml-3"> View - {{postData.data.Views}} </small>
 
-        <h5 class="mt-1">HOW TO START A BLOG IN 2024 EDITED NEW CATEGORY</h5>
-        <p>A paragraph is a series of sentences that are organized and coherent, and are all related to a single topic. Almost every piece of writing you do that is longer than a few sentences should be organized into paragraphs.</p>
-        <small class="bg-light text-warning ml-3 text-center"> LAST UPDATED - NOV 27, 2023 </small>
+        <h5 class="mt-1">{{postData.data.title}}</h5>
+        <p>{{postData.data.excerpt}}</p>
+        <small class="bg-light text-warning ml-3 text-center"> LAST UPDATED - {{postData.data.createdAt.toMillis() | date}} </small>
     </div>
 </div>

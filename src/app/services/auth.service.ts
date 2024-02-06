@@ -19,7 +19,7 @@ export class AuthService {
       this.loadUser()
       this.loggedIn = true
       this.isLoggedInGuard = true
-      this.router.navigate(['/'])
+      this.router.navigate([''])
     }).catch(e => {
       this.toast.error({detail: 'ERROR', summary: "Invalid UserName or PassWord", duration: 3000})
     })
