@@ -38,7 +38,7 @@ export class NewPostComponent implements OnInit {
       if (this.docId) {
         this.postService.loadOneData(val['id']).subscribe(post => {
           this.post = post;
-
+          
           this.postForm = fb.group({
             title: [this.post.title, [Validators.required, Validators.minLength(5)]],
             permalink: [{value: this.post.permalink, disabled: this.isDisabled}, Validators.required],
@@ -92,13 +92,15 @@ export class NewPostComponent implements OnInit {
   }
 
   onSubmit() {
+    // console.log(this.postForm.getRawValue());
+    
 
     let splitted = this.postForm.value.category.split('-')
-    console.log(splitted)
+    // console.log(splitted)
 
     const postData: Post = {
       title: this.postForm.value.title,
-      permalink: this.postForm.value.permalink,
+      permalink: this.postForm.getRawValue().permalink,
       category: {
         categoryId: splitted[0],
         category: splitted[1]

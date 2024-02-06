@@ -20,7 +20,7 @@
                                 <input 
                                 type="text" 
                                 class="form-control" 
-                                (keyup)="onTitleChanged($event)" 
+                                (input)="onTitleChanged($event)" 
                                 formControlName="title"
                                 [ngClass]="{'is-invalid': fc.title.touched && fc.title.invalid}"
                                 >
