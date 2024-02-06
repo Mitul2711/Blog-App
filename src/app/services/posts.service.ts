@@ -80,4 +80,10 @@ export class PostsService {
     })
   }
 
+  markFeatured(id: any, featuredData: any) {
+    this.afs.collection('posts').doc(id).update(featuredData).then(() => {
+      this.toast.info({detail: 'INFO', summary: "Featured Status Updated..", duration: 5000})
+    })
+  }
+
 }

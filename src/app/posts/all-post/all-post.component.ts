@@ -13,13 +13,26 @@ export class AllPostComponent implements OnInit {
 
   ngOnInit(): void {
     this.postService.loadData().subscribe(val => {
-      console.log(val);
+      // console.log(val);
       this.postArray = val;
+      
     })
   }
 
   onDelete(postImgPath: any, id: any) {
     this.postService.deleteImage(postImgPath, id);
+  }
+
+  onFeatured(id: any, value: any) {
+    const featuredData = {
+      isFeatured: value
+    }
+    // console.log(featuredData.isFeatured);
+    
+    
+    
+
+    this.postService.markFeatured(id, featuredData);
   }
 
 }
