@@ -13,12 +13,14 @@ import { NewPostComponent } from './posts/new-post/new-post.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthGuard } from './services/auth.guard';
 import { CategoryNavbarComponent } from './layouts/category-navbar/category-navbar.component';
+import { SubscriberComponent } from './subscriber/subscriber.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent},
   { path: 'categories', component: CategoriesComponent},
   { path: 'posts', component: AllPostComponent},
   { path: 'posts/new', component: NewPostComponent},
+  { path: 'sunscribers', component: SubscriberComponent},
   { path: 'login', component: LoginComponent },
 
 
