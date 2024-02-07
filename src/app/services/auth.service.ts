@@ -10,6 +10,7 @@ export class AuthService {
 
   loggedIn: boolean = false;
   isLoggedInGuard: boolean = false;
+  loginBtn: boolean = true;
 
   constructor(private afAuth: AngularFireAuth, private toast: NgToastService, private router: Router) { }
 
@@ -18,6 +19,7 @@ export class AuthService {
       this.toast.success({detail: 'SUCCESS', summary: "Logged in successfully..", duration: 3000})
       this.loadUser()
       this.loggedIn = true
+      this.loginBtn = false
       this.isLoggedInGuard = true
       this.router.navigate([''])
     }).catch(e => {
@@ -36,8 +38,9 @@ export class AuthService {
       this.toast.success({detail: 'SUCCESS', summary: 'User logged out successfully..'})
       localStorage.removeItem('user')
       this.loggedIn = false
+      this.loginBtn = true
       this.isLoggedInGuard = false
-      this.router.navigate(['/login'])
+      this.router.navigate(['/'])
     })
   }
 

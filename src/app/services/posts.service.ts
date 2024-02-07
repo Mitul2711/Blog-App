@@ -41,7 +41,7 @@ export class PostsService {
   saveData(postData: any) {
     this.afs.collection('posts').add(postData).then(docRef => {
       this.toast.success({ detail: 'SUCCESS', summary: 'Data Inserted Successfully', duration: 5000 });
-      this.router.navigate(['/posts']);
+      this.router.navigate(['/dashboard/posts']);
     })
   }
 
@@ -64,7 +64,7 @@ export class PostsService {
   updateData(id: any, postData: any) {
     this.afs.collection('posts').doc(id).update(postData).then(() => {
       this.toast.success({detail: 'SUCCESS', summary: 'Data Updated Successfully..', duration: 5000})
-      this.router.navigate(['/posts']);
+      this.router.navigate(['/dashboard/posts']);
     })
   }
 

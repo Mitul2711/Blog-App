@@ -23,8 +23,13 @@ export class HeaderComponent implements OnInit{
     this.authService.logOut();
   }
 
+
   isLoggedIn() {
     return this.authService.loggedIn
+  }
+  
+  loginBtn() {
+    return this.authService.loginBtn
   }
 
 }

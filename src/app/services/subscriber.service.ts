@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { NgToastService } from 'ng-angular-popup';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { map } from 'rxjs/operators';
 })
 export class SubscriberService {
 
-  constructor(private afs: AngularFirestore) { }
+  constructor(private afs: AngularFirestore, private toast: NgToastService) { }
 
   addSubs(subData: any) {
     this.afs.collection('subscribers').add(subData).then(() => {
@@ -30,6 +31,12 @@ export class SubscriberService {
         })
       })
     )
+  }
+
+  deleteData(id: any) {
+    this.afs.doc(`subscribers/${id}`).delete().then(docRef => {
+      this.toast.success({ detail: "SUCCESS", summary: 'Data Deleted Successfully..!', duration: 5000 });
+    })
   }
 
 }

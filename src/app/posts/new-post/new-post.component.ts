@@ -78,7 +78,7 @@ export class NewPostComponent implements OnInit {
 
   onTitleChanged($event: any) {
     const title = $event.target.value;
-    this.permalink = title.replace(/\s/g, '-');
+    this.permalink = title.replace(/\s+/g, '-');
 
   }
 

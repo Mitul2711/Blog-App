@@ -29,13 +29,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                            <tr *ngFor="let subs of subscribersArray; let i = index">
+                                <td> {{i+1}} </td>
+                                <td> {{subs.data.name}} </td>
+                                <td> {{subs.data.email}} </td>
                                 <td>
-                                    <button class="btn btn-sm btn-danger btn-delete"> Delete </button>
+                                    <button class="btn btn-sm btn-danger btn-delete" (click)="onDelete(subs.id)"> Delete </button>
                                 </td>
 
                             </tr>
