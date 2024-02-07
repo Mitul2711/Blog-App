@@ -10,14 +10,20 @@ import { ShowPostService } from 'src/app/services/show-post.service';
 export class HomeComponent implements OnInit {
   
   featuredPostArray: any;
+  latestPostArray: any;
 
-  constructor(private showPostService: ShowPostService) {
+  constructor(private showPostService: ShowPostService) {}
+
+  ngOnInit(): void {
     this.showPostService.loadFeatured().subscribe(val => {
       this.featuredPostArray = val
     })
+
+    this.showPostService.loadatest().subscribe(val => {
+      this.latestPostArray = val;
+    })
   }
 
-  ngOnInit(): void {
-  }
+ 
 
 }

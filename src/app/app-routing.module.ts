@@ -22,8 +22,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
 
 
-  { path: 'category', component: SingleCategoryComponent },
-  { path: 'post', component: SinglePostComponent },
+  { path: 'category/:category/:id', component: SingleCategoryComponent },
+  { path: 'post/:id', component: SinglePostComponent },
   { path: 'cat-nav', component: CategoryNavbarComponent },
   { path: 'h', component: HomeComponent },
 
