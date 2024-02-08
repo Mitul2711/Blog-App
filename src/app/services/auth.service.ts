@@ -35,7 +35,7 @@ export class AuthService {
 
   logOut() {
     this.afAuth.signOut().then(() => {
-      this.toast.success({detail: 'SUCCESS', summary: 'User logged out successfully..'})
+      this.toast.success({detail: 'SUCCESS', summary: 'User logged out successfully..', duration: 3000})
       localStorage.removeItem('user')
       this.loggedIn = false
       this.loginBtn = true

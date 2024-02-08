@@ -35,7 +35,7 @@ export class SubscriberService {
 
   deleteData(id: any) {
     this.afs.doc(`subscribers/${id}`).delete().then(docRef => {
-      this.toast.success({ detail: "SUCCESS", summary: 'Data Deleted Successfully..!', duration: 5000 });
+      this.toast.success({ detail: "SUCCESS", summary: 'Data Deleted Successfully..!', duration: 3000 });
     })
   }
 

@@ -63,7 +63,7 @@ export class PostsService {
 
   updateData(id: any, postData: any) {
     this.afs.collection('posts').doc(id).update(postData).then(() => {
-      this.toast.success({detail: 'SUCCESS', summary: 'Data Updated Successfully..', duration: 5000})
+      this.toast.success({detail: 'SUCCESS', summary: 'Data Updated Successfully..', duration: 3000})
       this.router.navigate(['/dashboard/posts']);
     })
   }
@@ -76,13 +76,13 @@ export class PostsService {
 
   deleteData(id: any) {
     this.afs.collection('posts').doc(id).delete().then(() => {
-      this.toast.warning({detail: 'WARNING', summary: "Data Deleted..", duration: 5000});
+      this.toast.warning({detail: 'WARNING', summary: "Data Deleted..", duration: 3000});
     })
   }
 
   markFeatured(id: any, featuredData: any) {
     this.afs.collection('posts').doc(id).update(featuredData).then(() => {
-      this.toast.info({detail: 'INFO', summary: "Featured Status Updated..", duration: 5000})
+      this.toast.info({detail: 'INFO', summary: "Featured Status Updated..", duration: 3000});
     })
   }
 

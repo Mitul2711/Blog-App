@@ -14,7 +14,7 @@ export class CategoriesService {
     
     this.afs.collection('categories').add(data).then(docRef => {
       console.log(docRef);
-      this.toast.success({ detail: "SUCCESS", summary: 'Data Insert Successfully..!', duration: 5000 });
+      this.toast.success({ detail: "SUCCESS", summary: 'Data Insert Successfully..!', duration: 3000 });
     })
       .catch(err => {
         console.log(err);
@@ -36,13 +36,13 @@ export class CategoriesService {
 
   updateData(id: string | undefined, editData: Partial<unknown>) {
     this.afs.doc(`categories/${id}`).update(editData).then(docRef => {
-      this.toast.success({ detail: "SUCCESS", summary: 'Data Updated Successfully..!', duration: 5000 });
+      this.toast.success({ detail: "SUCCESS", summary: 'Data Updated Successfully..!', duration: 3000 });
     })
   }
 
   deleteData(id: any) {
     this.afs.doc(`categories/${id}`).delete().then(docRef => {
-      this.toast.success({ detail: "SUCCESS", summary: 'Data Deleted Successfully..!', duration: 5000 });
+      this.toast.success({ detail: "SUCCESS", summary: 'Data Deleted Successfully..!', duration: 3000 });
     })
   }
 
