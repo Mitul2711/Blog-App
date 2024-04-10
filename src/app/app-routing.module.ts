@@ -15,6 +15,7 @@ import { CategoryNavbarComponent } from './layouts/category-navbar/category-navb
 import { SubscriberComponent } from './subscriber/subscriber.component';
 
 const routes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   { path: 'dashboard/categories', component: CategoriesComponent, canActivate: [AuthGuard]},
   { path: 'dashboard/posts', component: AllPostComponent, canActivate: [AuthGuard]},
@@ -26,7 +27,6 @@ const routes: Routes = [
   { path: 'category/:category/:id', component: SingleCategoryComponent },
   { path: 'post/:id', component: SinglePostComponent },
   { path: 'cat-nav', component: CategoryNavbarComponent },
-  { path: '', component: HomeComponent },
 
   { path: 'about-us', component: AboutUsComponent },
   { path: 'term-and-condition', component: TermAndConditionComponent }
