@@ -114,6 +114,8 @@ export class NewPostComponent implements OnInit {
       createdAt: new Date()
     }
     this.postService.uploadImage(this.selectedImage, postData, this.formStatus, this.docId);
+    console.log(postData);
+    
     this.postForm.reset();
     this.imgSrc = './assets/placeholder-img.png';
   }

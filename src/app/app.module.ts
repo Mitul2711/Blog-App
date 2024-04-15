@@ -33,6 +33,9 @@ import { LoginComponent } from './auth/login/login.component';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { SubscriberComponent } from './subscriber/subscriber.component';
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +69,7 @@ import { SubscriberComponent } from './subscriber/subscriber.component';
     HttpClientModule,
     ReactiveFormsModule,
     AngularFireStorageModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

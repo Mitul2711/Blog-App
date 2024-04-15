@@ -113,15 +113,14 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="" class="mb-2 mt-2"> Content </label>
-                                <angular-editor 
-                                placeholder="Add your Content here" 
-                                formControlName="content"></angular-editor>
+                                <angular-editor placeholder="Add your content here" formControlName="content"></angular-editor>
                                 <div *ngIf="fc.content.errors?.required">
                                     <p class="text-danger" *ngIf="fc.content.touched && fc.content.invalid">
                                         Content is required.
                                     </p>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
